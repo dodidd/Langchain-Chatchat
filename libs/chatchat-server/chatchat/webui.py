@@ -55,8 +55,8 @@ if __name__ == "__main__":
 
         selected_page = sac.menu(
             [
-                sac.MenuItem("多功能对话", icon="chat"),
-                sac.MenuItem("RAG 对话", icon="database"),
+                sac.MenuItem("多功能对话（学习计划）", icon="chat"),
+                sac.MenuItem("RAG 对话（知识库对话/例题）", icon="database"),
                 sac.MenuItem("知识库管理", icon="hdd-stack"),
             ],
             key="selected_page",
@@ -67,7 +67,7 @@ if __name__ == "__main__":
 
     if selected_page == "知识库管理":
         knowledge_base_page(api=api, is_lite=is_lite)
-    elif selected_page == "RAG 对话":
+    elif selected_page == "RAG 对话（知识库对话/例题）":
         kb_chat(api=api)
     else:
         dialogue_page(api=api, is_lite=is_lite)
