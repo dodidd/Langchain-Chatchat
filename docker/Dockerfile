@@ -17,6 +17,7 @@ RUN apt-get update -y && \
 RUN pip install --upgrade pip
 RUN pip install --upgrade pip setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip install pipx -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install poetry -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 
 # Add poetry to PATH
