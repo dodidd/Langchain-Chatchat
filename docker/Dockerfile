@@ -14,7 +14,7 @@ RUN apt-get update -y && \
     apt-get install -y --no-install-recommends libgl1 libglib2.0-0 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-RUN pip install --upgrade pip setuptools
+RUN pip install --upgrade pip setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip install pipx -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pip install --index-url https://pypi.python.org/simple/ pipx && \
     pipx install poetry --force
