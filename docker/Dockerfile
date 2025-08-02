@@ -15,10 +15,12 @@ RUN apt-get update -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
     
-RUN pip install --upgrade pip setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple
-RUN pip install --index-url https://pypi.org/simple/ pipx && \
-    pipx install poetry --force
+# 1. 统一使用国内镜像源，并升级核心工具
+RUN pip install --upgrade pip setuptools wheel -i https://pypi.tuna.tsinghua.edu.cn/simple && \
+    pip install pipx -i https://pypi.tuna.tsinghua.edu.cn/simple
 
+# 2. 用 pipx 安装 Poetry（指定版本以提高可复现性）
+RUN pipx install --pip-args="-i https://pypi.tuna.tsinghua.edu.cn/simple" poetry==1.7.0
 # Add poetry to PATH
 ENV PATH="/root/.local/bin:${PATH}"
 
