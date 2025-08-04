@@ -19,15 +19,15 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
 
 # 3. 配置 pip 国内镜像源并升级工具
-RUN pip install --upgrade pip setuptools wheel -i https://pypi.tuna.tsinghua.edu.cn/simple && \
+RUN pip install --upgrade pip setuptools -i https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip install pipx -i https://pypi.tuna.tsinghua.edu.cn/simple
 
-# 4. 用 pipx 安装指定版本的 Poetry（显式传递镜像源）
-RUN pipx install --pip-args="--index-url https://pypi.tuna.tsinghua.edu.cn/simple" poetry==1.7.0
+RUN pipx install poetry --force
+# Add poetry to PATH
 ENV PATH="/root/.local/bin:${PATH}"
 
-# 5. 克隆项目（浅克隆加快速度）
-RUN git clone --depth 1 https://github.com/chatchat-space/Langchain-Chatchat.git
+# 下载 Langchain-Chatchat
+RUN git clone https://github.com/chatchat-space/Langchain-Chatchat.git
 
 # 安装依赖
 WORKDIR /root/Langchain-Chatchat/libs/chatchat-server
